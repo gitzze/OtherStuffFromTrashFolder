@@ -1,6 +1,9 @@
---<<Automatically kill enemy as soon as their health drops low enough. for 16x9 screen ratio>>
+--<<Automatically kill enemy as soon as their health drops low enough. My version, for 16x9 screen ratio>>
 
--- a lot of improve. (performance,calculation,prediction)
+--new intarface
+--fixed some bugs
+--improved techies mechinic (today i am first time played on this hero:))
+
 require("libs.ScriptConfig")
 require("libs.Utils")
 require("libs.SideMessage")
