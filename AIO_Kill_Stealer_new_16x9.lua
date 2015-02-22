@@ -1,4 +1,4 @@
---<<Automatically kill enemy as soon as their health drops low enough>>
+--<<Automatically kill enemy as soon as their health drops low enough. for 16x9 screen ratio>>
 
 -- a lot of improve. (performance,calculation,prediction)
 require("libs.ScriptConfig")
