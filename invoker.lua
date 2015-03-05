@@ -1,7 +1,7 @@
 require("libs.Utils")
 
 ---------------config---------------
-local Activated = true
+local Activated = false
 local Spell = true
 local ActivatedKey = string.byte("P")
 local SpellKey = string.byte("L")
@@ -81,9 +81,7 @@ function Key(msg,code)
 	
 		if IsKeyDown(ActivatedKey) then
 			Activated = not Activated 
-		end
-		
-		if IsKeyDown(SpellKey) then
+		elseif IsKeyDown(SpellKey) then
 			Spell = not Spell
 		end
 	
