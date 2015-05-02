@@ -24,9 +24,9 @@
 	====================================
 	|             Changelog            |
 	====================================
-	  v1.5a
+		v1.5a
 	  
-	   - Full compliance with the new 6.84 patch
+	   	 - Full compliance with the new 6.84 patch
 	   
 	
 		v1.5
