@@ -1,4 +1,4 @@
---<<Automatically kill enemy as soon as their health drops low enough>>
+--<<https://mega.co.nz/#!8JAD0ZYC!N0aW-tKBxzJOmdCM5nO21kLWtaxPNf2pF2UWxmai9F0 - icons>>
 
 -- a lot of improve. (performance,calculation,prediction)
 require("libs.ScriptConfig")
