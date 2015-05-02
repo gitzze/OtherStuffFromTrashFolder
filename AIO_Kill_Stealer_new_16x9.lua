@@ -1,4 +1,5 @@
 --<<https://mega.co.nz/#!8JAD0ZYC!N0aW-tKBxzJOmdCM5nO21kLWtaxPNf2pF2UWxmai9F0 - icons>>
+--<<Automatically kill enemy as soon as their health drops low enough>>
 
 -- a lot of improve. (performance,calculation,prediction)
 require("libs.ScriptConfig")
@@ -276,10 +277,9 @@ function Kill(lsblock,me,ability,damage,adamage,range,target)
 			if not v:IsIllusion() then
 				local hand = v.handle				
 				if not hero[hand] then
-					offset[hand] = GetOffset(v.classId)
 					hero[hand] = {}
-					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,offset[hand])
-					hero[hand].hpnumber = drawMgr:CreateText(x21*shft,x22*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,offset[hand])
+					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,GetOffset())
+					hero[hand].hpnumber = drawMgr:CreateText(x21*shft,x22*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,GetOffset())
 				end
 				if v.visible and v.alive and v.health > 0 then					
 					local DmgS = math.floor(v:DamageTaken(Dmg,DmgT,me))
@@ -323,8 +323,8 @@ function SmartKill(lsblock,me,ability,damage,adamage,range,target,id)
 				local hand = v.handle
 				if not hero[hand] then
 					hero[hand] = {}
-					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,offset[hand])
-					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,offset[hand])
+					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,GetOffset())
+					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,GetOffset())
 				end
 				if v.visible and v.alive and v.health > 0 then
 					local DmgS = math.floor(v:DamageTaken(Dmg,DmgT,me))
@@ -368,8 +368,8 @@ function ComplexKill(lsblock,me,ability,damage,adamage,range,target,id)
 				local hand = v.handle
 				if not hero[hand] then
 					hero[hand] = {}
-					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,offset[hand])
-					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,offset[hand])
+					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,GetOffset())
+					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,GetOffset())
 				end
 				if v.visible and v.alive and v.health > 0 then
 					local DmgM = ComplexGetDmg(Spell.level,me,v,Dmg,id)
@@ -417,8 +417,8 @@ function KillGlobal(me,ability,damage,adamage,target)
 				local hand = v.handle
 				if not heroG[hand] then
 					heroG[hand] = {}
-					heroG[hand].hp = drawMgr:CreateRect(5*shft,-39*shft-shift,38*shft,12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) heroG[hand].hp.visible = false heroG[hand].hp.entity = v heroG[hand].hp.entityPosition = Vector(0,0,offset[hand])
-					heroG[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft-shift,0xFF99FFFF,"",F14) heroG[hand].hpnumber.visible = false heroG[hand].hpnumber.entity = v heroG[hand].hpnumber.entityPosition = Vector(0,0,offset[hand])
+					heroG[hand].hp = drawMgr:CreateRect(5*shft,-39*shft-shift,38*shft,12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) heroG[hand].hp.visible = false heroG[hand].hp.entity = v heroG[hand].hp.entityPosition = Vector(0,0,GetOffset())
+					heroG[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft-shift,0xFF99FFFF,"",F14) heroG[hand].hpnumber.visible = false heroG[hand].hpnumber.entity = v heroG[hand].hpnumber.entityPosition = Vector(0,0,GetOffset())
 				end
 				if v.visible and v.alive and v.health > 0 then
 					heroG[hand].hp.visible = draw	
@@ -488,8 +488,8 @@ function KillPrediction(me,ability,damage,cast,project)
 				local hand = v.handle
 				if not hero[hand] then
 					hero[hand] = {}
-					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,offset[hand])
-					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,offset[hand])
+					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,GetOffset())
+					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,GetOffset())
 				end
 				if v.visible and v.alive and v.health > 0 then
 					local DmgS = math.floor(v:DamageTaken(Dmg,DmgT,me))
@@ -535,8 +535,8 @@ function KillAxe(me,damage,adamage)
 				local hand = v.handle
 				if not hero[hand] then
 					hero[hand] = {}
-					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,offset[hand])
-					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,offset[hand])
+					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,GetOffset())
+					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,GetOffset())
 				end
 				if v.visible and v.alive then
 					local DmgF = math.floor(v.health - Dmg + CastPoint*v.healthRegen+MorphMustDie(v,CastPoint))
@@ -583,8 +583,8 @@ function KillMines(me,ability,damage,adamage,comp,id)
 				local hand = v.handle
 				if not heroG[hand] then
 					heroG[hand] = {}
-					heroG[hand].hp = drawMgr:CreateRect(5*shft,-39*shft-12*shft,38*shft,12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) heroG[hand].hp.visible = false heroG[hand].hp.entity = v heroG[hand].hp.entityPosition = Vector(0,0,offset[hand])
-					heroG[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft-12*shft,0xFF99FFFF,"",F14) heroG[hand].hpnumber.visible = false heroG[hand].hpnumber.entity = v heroG[hand].hpnumber.entityPosition = Vector(0,0,offset[hand])
+					heroG[hand].hp = drawMgr:CreateRect(5*shft,-39*shft-12*shft,38*shft,12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) heroG[hand].hp.visible = false heroG[hand].hp.entity = v heroG[hand].hp.entityPosition = Vector(0,0,GetOffset())
+					heroG[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft-12*shft,0xFF99FFFF,"",F14) heroG[hand].hpnumber.visible = false heroG[hand].hpnumber.entity = v heroG[hand].hpnumber.entityPosition = Vector(0,0,GetOffset())
 				end
 				if v.visible and v.alive and v.health > 0 then
 					local DmgS = 0
@@ -650,8 +650,8 @@ function KillLina(lsblock,me,ability,damage,adamage,range,target)
 				local hand = v.handle
 				if not hero[hand] then
 					hero[hand] = {}
-					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,offset[hand])
-					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,offset[hand])
+					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,GetOffset())
+					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,GetOffset())
 				end
 				if v.visible and v.alive then
 					local DmgS = math.floor(v:DamageTaken(Dmg,DAMAGE_PURE,me,true))
@@ -692,8 +692,8 @@ function SmartKoils(me)
 			if  not v:IsIllusion() then
 				if not hero[hand] then
 					hero[hand] = {}
-					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,offset[hand])
-					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,offset[hand])
+					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,GetOffset())
+					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,GetOffset())
 				end
 				if v.visible and v.alive and v.health > 0 then
 					local DmgF = math.floor(v.health - v:DamageTaken(DmgS,DAMAGE_MAGC,me))
@@ -754,8 +754,8 @@ function SmartSS(me)
 			if  not v:IsIllusion() then
 				if not hero[hand] then
 					hero[hand] = {}
-					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,offset[hand])
-					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,offset[hand])
+					hero[hand].hp = drawMgr:CreateRect(x11*shft,x12*shft,y11*shft,y12*shft,-1,drawMgr:GetTextureId("NyanUI/other/stats_hp")) hero[hand].hp.visible = false hero[hand].hp.entity = v hero[hand].hp.entityPosition = Vector(0,0,GetOffset())
+					hero[hand].hpnumber = drawMgr:CreateText(10*shft,-39*shft,0x80ED1AFF,"",F14) hero[hand].hpnumber.visible = false hero[hand].hpnumber.entity = v hero[hand].hpnumber.entityPosition = Vector(0,0,GetOffset())
 				end
 				if v.visible and v.alive and v.health > 0 then
 					local DmgS = math.floor(v:DamageTaken(Dmg,DAMAGE_PURE,me))
